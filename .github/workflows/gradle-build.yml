@@ -9,7 +9,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        java-version: [17]
+        java-version: [8]  # Java 8 for Spring Boot 2.x
     steps:
       - uses: actions/checkout@v4
 
@@ -26,8 +26,8 @@ jobs:
       - name: Build with Gradle
         run: |
           if [[ "${{ runner.os }}" == "Windows" ]]; then
-            ./gradlew.bat clean build --no-daemon --stacktrace
+            ./gradlew.bat clean build --no-daemon
           else
-            ./gradlew clean build --no-daemon --stacktrace
+            ./gradlew clean build --no-daemon
           fi
         shell: bash
