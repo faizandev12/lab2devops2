@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: ${{ matrix.java-version }}
-          distribution: temurin
+          distribution: 'temurin'
 
       - name: Grant execute permission for gradlew (Linux/macOS)
         if: runner.os != 'Windows'
@@ -25,9 +25,9 @@ jobs:
 
       - name: Build with Gradle
         run: |
-          if [ "${{ runner.os }}" == "Windows" ]; then
-            ./gradlew.bat build --no-daemon
+          if [[ "${{ runner.os }}" == "Windows" ]]; then
+            ./gradlew.bat clean build --no-daemon --stacktrace
           else
-            ./gradlew build --no-daemon
+            ./gradlew clean build --no-daemon --stacktrace
           fi
-        shell: bash  # Explicitly use Bash
+        shell: bash
