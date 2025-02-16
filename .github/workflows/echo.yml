@@ -1,0 +1,14 @@
+name: Echo Message Workflow
+
+on: [push] # Runs on every push
+
+jobs:
+  echo-message:
+    name: Echo on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - name: Echo message
+        run: echo "Hi, I am from COSC 1209 class"
